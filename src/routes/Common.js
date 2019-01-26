@@ -1,6 +1,5 @@
 import React from 'react';
-import { Switch } from 'react-router-dom';
-import BaseRoute from '../components/BaseRoute';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import MainLayout from '../layouts/MainLayout';
 
 import Home from '../pages/Home';
@@ -11,10 +10,13 @@ class AppRouter extends React.Component {
 
   render() {
     return (
-      <Switch>
-        <BaseRoute exact path="/" layout={MainLayout} component={Home} />
-        <BaseRoute exact path="/:movie_id" layout={MainLayout} component={Detail} />
-      </Switch>
+      <Router>
+        <React.Fragment>
+          <MainLayout />
+          <Route exact path="/" component={Home} />
+          <Route path="/:movie_id" component={Detail} />
+        </React.Fragment>
+      </Router>
     );
   }
 }
